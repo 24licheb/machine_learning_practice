@@ -1,6 +1,6 @@
 ## 一、前言
 ---
-本文所讲的实战内容是用机器学习的方法来分析科比职业生涯数据的实例，训练处一个预测科比投篮模型。主要用了python的numpy，pandas，matplotlib和sklearn库。
+本文所讲的实战内容是用机器学习的方法来分析科比职业生涯数据的实例，利用随机森林分类器训练处一个预测科比投篮模型。主要用了python的numpy，pandas，matplotlib和sklearn库。
 
 本文出现的所有代码，均可在我的github上下载，欢迎Follow、Star：[github地址](https://github.com/yaoguangju/machine_learning_practice)
 
@@ -17,31 +17,31 @@
 
 先来看看这25个标签具体代表什么(自己不是篮球的专业人士和爱好者，所以具体的内容可能有所出入，不过不会影响到分析结果)
 
-- action_type         用什么方式投的篮
-- combined_shot_type  结合什么方式投篮
-- game_event_id       游戏事件ID
-- game_id             游戏ID
-- lat                 投篮的经度
-- loc_x               投篮的x坐标
-- loc_y               投篮的y坐标
-- lon                 投篮的纬度
-- minutes_remaining   离比赛结束还有多少分钟
-- period              第几场
-- playoffs            是不是季后赛
-- season              赛季
-- seconds_remaining   离比赛结束还有多少秒
-- shot_distance       投篮离篮筐的的距离
-- shot_made_flag      是不是进球了(主要的标签)
-- shot_type           2分球还是3分球区域
-- shot_zone_area      投篮区域的表示方法一
-- shot_zone_basic     投篮区域的表示方法二
-- shot_zone_range     投篮区域的表示方法三
-- team_id             队伍ID
-- team_name           队伍名字
-- game_date           比赛时间
-- matchup             比赛双方队伍
-- opponent            自己所在队伍名字
-- shot_id             镜头ID
+- action_type（用什么方式投的篮）
+- combined_shot_type（结合什么方式投篮）
+- game_event_id（游戏事件ID）
+- game_id（游戏ID）
+- la（投篮的经度）
+- loc_x （投篮的x坐标）
+- loc_y（投篮的y坐标）
+- lon（投篮的纬度）
+- minutes_remaining（离比赛结束还有多少分钟）
+- period（第几场）
+- playoffs（是不是季后赛）
+- season（赛季）
+- seconds_remaining（离比赛结束还有多少秒）
+- shot_distance（投篮离篮筐的的距离）
+- shot_made_flag （是不是进球了(主要的标签)）
+- shot_type（2分球还是3分球区域）
+- shot_zone_area（投篮区域的表示方法一）
+- shot_zone_basic（投篮区域的表示方法二）
+- shot_zone_range（投篮区域的表示方法三）
+- team_id（队伍ID）
+- team_name（队伍名字）
+- game_date（比赛时间）
+- matchup（比赛双方队伍）
+- opponent（自己所在队伍名字）
+- shot_id（镜头ID）
 
 可以看到，这25个标签中对于科比能否投篮命中有一些无关紧要的数据，比如team_id，因为这30000多份样本中全是在湖人队打的，shot_id，game_id等等这个数据也无关紧要，具体的分析将会在下面讲解。
 
@@ -438,5 +438,5 @@ print(len(test_label))
 
 六、总结
 ---
-本篇文章主要用了机器学习的sklearn库，配合着numpy，pandas，matplotlib的技术路线，对科比生涯数据进行分析，对缺失值进行了预测。
+本篇文章主要用了机器学习的sklearn库，配合着numpy，pandas，matplotlib的技术路线，利用随机森林分类器对科比生涯数据进行分析，对缺失值进行了预测。
 
