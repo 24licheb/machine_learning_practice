@@ -60,6 +60,8 @@ raw['remaining_time'] = raw['minutes_remaining'] * 60 + raw['seconds_remaining']
 raw['season'] = raw['season'].apply(lambda x: int(x.split('-')[1]) )
 # print(raw['season'].unique())
 
+# 先保存一下shot_id,为接下来的创建result.csv做准备
+test_shot_id = raw[pd.isnull(raw['shot_made_flag'])]
 
 #删除对于比赛结果没有影响的数据
 drops = ['shot_id', 'team_id', 'team_name', 'shot_zone_area', 'shot_zone_range', 'shot_zone_basic','matchup', 'lon',
@@ -149,6 +151,9 @@ test_kobe = test_kobe.drop('shot_made_flag', 1)
 model = RandomForestClassifier(n_estimators=100, max_depth=12)
 model.fit(train_kobe, train_label)
 
-test_label = model.predict(test_kobe)
-print(test_label)
-print(len(test_label))
+
+predictions = model.predict(test_kobe)
+result = pd.DataFrame({'shot_id':test_shot_id['shot_id'].as_matrix(), 'shot_made_flag':predictions.astype(np.int32)})
+result.to_csv("result.csv", index=False)
+
+print(pd.read_csv("result.csv"))
