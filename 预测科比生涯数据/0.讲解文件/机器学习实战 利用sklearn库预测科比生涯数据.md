@@ -426,9 +426,10 @@ test_kobe = test_kobe.drop('shot_made_flag', 1)
 # 训练模型并且用预测shot_made_flag的缺失值
 model = RandomForestClassifier(n_estimators=100, max_depth=12)
 model.fit(train_kobe, train_label)
-test_label = model.predict(test_kobe)
-print(test_label)
-print(len(test_label))
+
+predictions = model.predict(test_kobe)
+result = pd.DataFrame({'shot_id':test_shot_id['shot_id'].as_matrix(),'shot_made_flag':predictions.astype(np.int32)})
+result.to_csv("result.csv", index=False)
 ```
 运行结果如下图
 
